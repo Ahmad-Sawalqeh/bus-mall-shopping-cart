@@ -6,19 +6,7 @@ var Cart = function(items) {
   this.items = items;
 };
 
-Cart.prototype.addItem = function(product, quantity) {
-  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
-};
-
-Cart.prototype.saveToLocalStorage = function() {
-  // TODO: Fill in this instance method to save the contents of the cart to localStorage
-};
-
-Cart.prototype.removeItem = function(item) {
-  // TODO: Fill in this instance method to remove one item from the cart.
-  // Note: You will have to decide what kind of parameter to pass in here!
-};
-
+// CartItem contructor.
 var CartItem = function(product, quantity) {
   this.product = product;
   this.quantity = quantity;
@@ -32,6 +20,42 @@ var Product = function(filePath, name) {
 };
 Product.allProducts = [];
 
+
+Cart.prototype.addItem = function(product, quantity) {
+  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  // Done
+  var newCartItemInstance = new CartItem(product, quantity);
+  this.items.push(newCartItemInstance);
+};
+
+Cart.prototype.saveToLocalStorage = function() {
+  // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  // Done
+  var itemString = JSON.stringify(this.items);
+  localStorage.setItem('cart', itemString);
+};
+
+Cart.prototype.removeItem = function(item) {
+  // TODO: Fill in this instance method to remove one item from the cart.
+  // Done
+  this.item.splice(item, 1);
+  // Note: You will have to decide what kind of parameter to pass in here!
+};
+/*
+// CartItem contructor.
+var CartItem = function(product, quantity) {
+  this.product = product;
+  this.quantity = quantity;
+};
+
+// Product contructor.
+var Product = function(filePath, name) {
+  this.filePath = filePath;
+  this.name = name;
+  Product.allProducts.push(this);
+};
+Product.allProducts = [];
+*/
 function generateCatalog() {
   new Product('assets/bag.jpg', 'Bag');
   new Product('assets/banana.jpg', 'Banana');
